@@ -12,13 +12,12 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    
+
     public UserEntity() {
     }
 
-    public UserEntity(String name, Long id) {
+    public UserEntity(String name) {
         this.name = name;
-        this.id = id;
     }
 
     public String getName() {
