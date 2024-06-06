@@ -10,9 +10,9 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String name;
     private Long id;
-
+    private String name;
+    
     public UserEntity() {
     }
 
