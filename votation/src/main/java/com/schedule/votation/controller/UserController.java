@@ -1,9 +1,9 @@
 package com.schedule.votation.controller;
 
 import com.schedule.votation.entities.UserEntity;
-import com.schedule.votation.repository.UserRepository;
+
 import com.schedule.votation.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
