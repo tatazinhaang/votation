@@ -24,21 +24,27 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<UserEntity> findById(Long id) {
-        return userRepository.findById(id);
+    public UserEntity findById(Long id) {
+        var user = userRepository.findById(id);
+        if (user.isPresent()) {
+            return user.get();
+        }
+        throw new RuntimeException("Id de usuario não encontrado");
     }
 
     public UserEntity save(UserEntity user) {
         return userRepository.save(user);
     }
 
-   public ResponseEntity<UserEntity> update(Long id, UserEntity userDetails) {
-        return findById(id).map(user -> {
-            user.setName(userDetails.getName());
-            userRepository.save(user);
-            return ResponseEntity.ok(user);
-        })
-                .orElse(ResponseEntity.notFound().build());
+   public UserEntity update(Long id, UserEntity newUser) {
+        var userEntity = userRepository.findById(id);
+        if (userEntity.isPresent()) {
+            var user = userEntity.get();
+            user.setName(newUser.getName());
+            return userRepository.save(user);
+        } else {
+            throw new RuntimeException("Usuário não encontrado");
+        }
    }
 
    public void deleteById(Long id) {

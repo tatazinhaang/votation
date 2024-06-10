@@ -29,15 +29,8 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getUserById(@PathVariable Long id) {
-        Optional<UserEntity> user = userService.findById(id);
-        if (user.isPresent()) {
-            return new ResponseEntity<>(user.get(), HttpStatus.OK);
-        } else {
-            Map<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("message", "ID de usuário não encontrado");
-            return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-        }
+    public UserEntity getUserById(@PathVariable Long id) {
+        return userService.findById(id);
     }
 
     @PostMapping
@@ -46,7 +39,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserEntity> updateUser(@PathVariable Long id, @RequestBody UserEntity user) {
+    public UserEntity updateUser(@PathVariable Long id, @RequestBody UserEntity user) {
         return userService.update(id, user);
     }
 
