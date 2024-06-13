@@ -48,6 +48,11 @@ public class UserService {
    }
 
    public void deleteById(Long id) {
-        userRepository.deleteById(id);
+        var user = userRepository.findById(id);
+        if (user.isPresent()) {
+            userRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Usuário não encontrado");
+        }
    }
 }

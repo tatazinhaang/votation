@@ -34,8 +34,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserEntity> createUser(@RequestBody UserEntity user) {
-        return new ResponseEntity<>(userService.save(user), HttpStatus.CREATED);
+    public UserEntity createUser(@RequestBody UserEntity user) {
+        return userService.save(user);
     }
 
     @PutMapping("/{id}")
@@ -43,9 +43,8 @@ public class UserController {
         return userService.update(id, user);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
-        return ResponseEntity.noContent().build();
     }
 }
