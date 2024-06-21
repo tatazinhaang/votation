@@ -33,6 +33,9 @@ public class UserService {
     }
 
     public UserEntity save(UserEntity user) {
+        if (user.getName().isEmpty()) {
+            throw new RuntimeException("O campo nome não pode está vazio");
+        }
         return userRepository.save(user);
     }
 
